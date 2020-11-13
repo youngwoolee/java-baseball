@@ -17,6 +17,21 @@ public class GameResult {
         return new GameResult(baseBallNumberResults);
     }
 
+    public boolean isSuccess() {
+        if(gameResult.containsKey(BaseBallNumberResult.STRIKE)) {
+            return gameResult.get(BaseBallNumberResult.STRIKE) == BaseBallNumbers.PICK_NUM_SIZE;
+        }
+        return false;
+    }
+
+    public boolean isNothing() {
+        return !gameResult.containsKey(BaseBallNumberResult.STRIKE) && !gameResult.containsKey(BaseBallNumberResult.BALL);
+    }
+
+    public EnumMap<BaseBallNumberResult, Integer> getGameResult() {
+        return gameResult;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
