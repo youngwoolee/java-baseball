@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.List;
+
 public class BaseBallNumber {
 
     public static final int MIN_NUM = 1;
@@ -24,11 +26,41 @@ public class BaseBallNumber {
         }
     }
 
+    public boolean isStrike(final List<BaseBallNumber> baseBallNumbers) {
+        return baseBallNumbers.get(this.index).getNumber() == this.number;
+    }
+
+    public boolean isBall(final List<BaseBallNumber> baseBallNumbers) {
+        for(BaseBallNumber baseBallNumber : baseBallNumbers) {
+            if(isBall(baseBallNumber)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isBall(final BaseBallNumber baseBallNumber) {
+        if(this.index != baseBallNumber.index && this.number == baseBallNumber.number) {
+            return true;
+        }
+        return false;
+    }
+
     public int getIndex() {
-        return index;
+        return this.index;
     }
 
     public int getNumber() {
-        return number;
+        return this.number;
+    }
+
+    public BaseBallNumberResult compareBaseBallNumber(List<BaseBallNumber> baseBallNumbers) {
+        if(isStrike(baseBallNumbers)){
+            return BaseBallNumberResult.STRIKE;
+        }
+        if(isBall(baseBallNumbers)) {
+            return BaseBallNumberResult.BALL;
+        }
+        return BaseBallNumberResult.OUT;
     }
 }

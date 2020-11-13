@@ -1,9 +1,6 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class BaseBallNumbers {
 
@@ -37,12 +34,21 @@ public class BaseBallNumbers {
     private static List<BaseBallNumber> convertBaseBallNumber(final List<Integer> numbers) {
         List<BaseBallNumber> baseBallNumbers = new ArrayList<>();
         for(int i=0; i<numbers.size(); i++) {
-            baseBallNumbers.add(BaseBallNumber.of(i+1, numbers.get(i)));
+            baseBallNumbers.add(BaseBallNumber.of(i, numbers.get(i)));
         }
         return baseBallNumbers;
     }
 
     public List<BaseBallNumber> getBaseBallNumbers() {
         return baseBallNumbers;
+    }
+
+
+    public GameResult compareBaseBallNumbers(BaseBallNumbers guessBaseBallNumbers) {
+        List<BaseBallNumberResult> baseBallNumberResults = new ArrayList<>();
+        for (BaseBallNumber baseBallNumber : guessBaseBallNumbers.getBaseBallNumbers()) {
+            baseBallNumberResults.add(baseBallNumber.compareBaseBallNumber(baseBallNumbers));
+        }
+        return GameResult.of(baseBallNumberResults);
     }
 }
