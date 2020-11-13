@@ -28,8 +28,9 @@ public class BaseBallGame {
         while(true) {
             BaseBallNumbers guessBaseBallNumbers = InputView.inputGuessNumbers();
             play(guessBaseBallNumbers);
-            if(finished) {
+            if(this.finished) {
                 OutputView.printSuccess();
+                return InputView.replayCheck();
             }
         }
     }
