@@ -1,20 +1,16 @@
-import domain.BaseBallGame;
-import domain.BaseBallNumbers;
+import controller.BaseBallGame;
 import domain.GameType;
-import view.InputView;
-import view.OutputView;
-
-import java.util.Arrays;
+import util.NumberGenerator;
+import util.RandomNumberGenerator;
 
 public class BaseBallApplication {
     private static GameType gameType;
 
     public static void main(String[] args) {
-
+        NumberGenerator generator = new RandomNumberGenerator();
         while (gameType != GameType.END) {
-            BaseBallGame baseBallGame = new BaseBallGame();
+            BaseBallGame baseBallGame = new BaseBallGame(generator);
             gameType = baseBallGame.start();
         }
-
     }
 }

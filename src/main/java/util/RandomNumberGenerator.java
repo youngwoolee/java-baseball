@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class RandomNumberGenerator {
+public class RandomNumberGenerator implements NumberGenerator {
 
     private static List<Integer> sourceNumber;
     static {
@@ -17,7 +17,8 @@ public class RandomNumberGenerator {
         }
     }
 
-    public static List<Integer> getNumbers() {
+    @Override
+    public List<Integer> getNumbers() {
         List<Integer> ballBasicNumbers = sourceNumber;
         Collections.shuffle(ballBasicNumbers);
         return ballBasicNumbers.subList(0, BaseBallNumbers.PICK_NUM_SIZE);

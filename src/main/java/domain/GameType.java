@@ -31,7 +31,4 @@ public enum GameType {
         return gameType;
     }
 
-    public boolean isEnd() {
-        return this.equals(GameType.END);
-    }
 }

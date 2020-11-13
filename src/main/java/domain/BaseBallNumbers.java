@@ -1,5 +1,7 @@
 package domain;
 
+import exception.ErrorMessage;
+
 import java.util.*;
 
 public class BaseBallNumbers {
@@ -19,7 +21,7 @@ public class BaseBallNumbers {
 
     private static void validation(final List<Integer> numbers) {
         if(numbers == null || numbers.size() != PICK_NUM_SIZE) {
-            throw new IllegalArgumentException("정확히 3개 숫자만 선택 할수 있습니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_ALLOW_SIZE);
         }
         duplicationCheck(numbers);
     }
@@ -27,7 +29,7 @@ public class BaseBallNumbers {
     private static void duplicationCheck(final List<Integer> numbers) {
         Set<Integer> notDuplicated = new HashSet<>(numbers);
         if(notDuplicated.size() < PICK_NUM_SIZE) {
-            throw new IllegalArgumentException("중복된 숫자는 들어갈수 없습니다");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBERS);
         }
     }
 

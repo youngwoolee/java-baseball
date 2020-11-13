@@ -18,7 +18,8 @@ class RandomNumberGeneratorTest {
 
     @BeforeEach
     void setUp() {
-        randomNumbers = RandomNumberGenerator.getNumbers();
+        NumberGenerator generator = new RandomNumberGenerator();
+        randomNumbers = generator.getNumbers();
     }
 
     @DisplayName("랜덤 숫자 1~9 에서 부터 3개 생성")

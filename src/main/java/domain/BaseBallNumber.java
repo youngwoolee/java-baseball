@@ -1,5 +1,7 @@
 package domain;
 
+import exception.ErrorMessage;
+
 import java.util.List;
 
 public class BaseBallNumber {
@@ -22,7 +24,7 @@ public class BaseBallNumber {
 
     private void validation(final int number) {
         if(number < MIN_NUM || number > MAX_NUM){
-            throw new IllegalArgumentException("1~9 사이의 숫자만 가능합니다");
+            throw new IllegalArgumentException(ErrorMessage.NOT_ALLOW_NUMBER);
         }
     }
 
