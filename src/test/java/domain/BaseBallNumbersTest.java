@@ -53,4 +53,22 @@ class BaseBallNumbersTest {
                 .isThrownBy(() -> BaseBallNumbers.of(Arrays.asList(3, 3, 3)));
     }
 
+    @DisplayName("값 비교 : STRIKE, BALL, OUT 개수를 포함한 GameResult 으로 리턴")
+    @ParameterizedTest
+    @MethodSource
+    void compareBaseBallNumbersWithAnswer(BaseBallNumbers baseBallNumbers, GameResult gameResult) {
+        BaseBallNumbers answers = BaseBallNumbers.of(Arrays.asList(1, 2, 3));
+        assertThat(answers.compareBaseBallNumbers(baseBallNumbers)).isEqualTo(gameResult);
+    }
+
+    static Stream<Arguments> compareBaseBallNumbersWithAnswer() {
+        return Stream.of(
+                Arguments.of(BaseBallNumbers.of(Arrays.asList(1, 2, 3)), GameResult.of(Arrays.asList(BaseBallNumberResult.STRIKE, BaseBallNumberResult.STRIKE, BaseBallNumberResult.STRIKE))),
+                Arguments.of(BaseBallNumbers.of(Arrays.asList(3, 1, 2)), GameResult.of(Arrays.asList(BaseBallNumberResult.BALL, BaseBallNumberResult.BALL, BaseBallNumberResult.BALL))),
+                Arguments.of(BaseBallNumbers.of(Arrays.asList(4, 5, 6)), GameResult.of(Arrays.asList(BaseBallNumberResult.OUT, BaseBallNumberResult.OUT, BaseBallNumberResult.OUT))),
+                Arguments.of(BaseBallNumbers.of(Arrays.asList(3, 2, 1)), GameResult.of(Arrays.asList(BaseBallNumberResult.BALL, BaseBallNumberResult.STRIKE, BaseBallNumberResult.BALL)))
+        );
+    }
+
+
 }
